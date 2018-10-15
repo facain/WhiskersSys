@@ -104,8 +104,7 @@ public class HomeFragment extends Fragment {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Toast.makeText(getContext(), "Error in retrieving data!", Toast.LENGTH_SHORT).show();
-            }
+             }
         });
 
 

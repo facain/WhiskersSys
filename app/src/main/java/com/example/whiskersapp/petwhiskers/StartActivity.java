@@ -298,21 +298,42 @@ public class StartActivity extends AppCompatActivity {
                     }
                 });
     }
-    private void storeProfileInfo(String firstName, String lastName, String id, String contact, String email, String password){
+    private void storeProfileInfo(final String firstName, final String lastName, final String id, final String contact, final String email, final String password){
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("user_account");
         final User logIn = new User(id,firstName,lastName,contact,email,password,"0");
-        dbRef.child(id).setValue(logIn);
-        dbRef.addValueEventListener(new ValueEventListener(){
 
+        userRef.orderByChild("id").equalTo(id).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.getValue()!=null){
 
+                }else {
+
+
+                    dbRef.child(id).setValue(logIn);
+                    dbRef.addValueEventListener(new ValueEventListener() {
+
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    });
+                }
             }
 
             @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
+
+
+
     }
 
 

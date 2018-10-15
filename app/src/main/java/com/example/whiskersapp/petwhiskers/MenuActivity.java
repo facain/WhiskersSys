@@ -70,7 +70,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
         petEntryFAB = findViewById(R.id.cpefab);
         firebaseAuth = FirebaseAuth.getInstance();
         progressDialog = new ProgressDialog(this);
-        if (firebaseAuth.getCurrentUser() == null) {
+        if (firebaseAuth.getCurrentUser() == null ) {
             Intent intent = new Intent(MenuActivity.this, StartActivity.class);
             startActivity(intent);
             finish();
@@ -85,38 +85,42 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     for(DataSnapshot children: dataSnapshot.getChildren()){
                         utest = children.getValue(User.class);
-                        if(utest.getBanStat().equals("0")) {
                             if (utest.getEmail().equals(firebaseAuth.getCurrentUser().getEmail())) {
-                                user = utest;
-                                Toast.makeText(getApplicationContext(), "Welcome " + user.getFname(), Toast.LENGTH_LONG).show();
-                                ((TextView) findViewById(R.id.navHeader_name)).setText(user.getFname() + " " + user.getLname());
+                                if(utest.getBanStat().equals("0")) {
 
-                            }
-                        }else{
-                            choice = new AlertDialog.Builder(MenuActivity.this);
-                            choice.setTitle("You Have been banned");
+                                    user = utest;
+                                    Toast.makeText(getApplicationContext(), "Welcome " + user.getFname(), Toast.LENGTH_LONG).show();
+                                    ((TextView) findViewById(R.id.navHeader_name)).setText(user.getFname() + " " + user.getLname());
+                                }else{
+                                choice = new AlertDialog.Builder(MenuActivity.this);
+                                choice.setTitle("You Have been banned");
 
-                            choice.setPositiveButton("Log Out", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(final DialogInterface dialogInterface, int i) {
-                                    firebaseAuth.signOut();
-                                    GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-                                    if (acct != null) {
-                                        mGoogleSignInClient.signOut();
+                                choice.setPositiveButton("Log Out", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(final DialogInterface dialogInterface, int i) {
+                                        firebaseAuth.signOut();
+                                        GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+                                        if (acct != null) {
+                                            mGoogleSignInClient.signOut();
+
+                                        }
+                                        finish();
+                                        startActivity(new Intent(MenuActivity.this, StartActivity.class));
+
 
                                     }
-                                    finish();
-                                    startActivity(new Intent(MenuActivity.this, StartActivity.class));
+                                });
+
+                                choice.setCancelable(false);
 
 
-                                }
-                            });
 
+                                alert = choice.create();
+                                alert.show();
 
-                            alert = choice.create();
-                            alert.show();
+                            }
+                            }
 
-                        }
                     }
                 }
 
