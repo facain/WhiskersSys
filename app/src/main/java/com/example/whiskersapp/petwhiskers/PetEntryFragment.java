@@ -144,7 +144,7 @@ public class PetEntryFragment extends Fragment{
         if (!petName.isEmpty() && !petBreed.isEmpty() && !petEyecolor.isEmpty() && !petFurcolor.isEmpty()
                 && !petDesc.isEmpty() && !category.isEmpty() && !gender.isEmpty() && !petBday.isEmpty()) {
 
-            if(petName.matches("^([a-zA-Z])+(\\s)+[a-zA-Z]+$\n") && petBreed.matches("^([a-zA-Z])+(\\s)+[a-zA-Z]+$\n") && petEyecolor.matches("^([a-zA-Z])+(\\s)+[a-zA-Z]+$\n") && petFurcolor.matches("^([a-zA-Z])+(\\s)+[a-zA-Z]+$\n")){
+         //   if(petName.matches("^([a-zA-Z])+(\\s)+[a-zA-Z]+$\n") && petBreed.matches("^([a-zA-Z])+(\\s)+[a-zA-Z]+$\n") && petEyecolor.matches("^([a-zA-Z])+(\\s)+[a-zA-Z]+$\n") && petFurcolor.matches("^([a-zA-Z])+(\\s)+[a-zA-Z]+$\n")){
                 DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                 String currentDate = df.format(Calendar.getInstance().getTime());
                 Log.e("date",currentDate);
@@ -187,9 +187,9 @@ public class PetEntryFragment extends Fragment{
                 Toast.makeText(getContext(), "Invalid input", Toast.LENGTH_SHORT).show();
             }
 
-        } else {
-            Toast.makeText(getContext(), "Please fill up the fields.", Toast.LENGTH_SHORT).show();
-        }
+       // } else {
+         //   Toast.makeText(getContext(), "Please fill up the fields.", Toast.LENGTH_SHORT).show();
+       // }
     }
 
 

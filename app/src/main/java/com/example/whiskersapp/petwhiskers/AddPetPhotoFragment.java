@@ -290,6 +290,7 @@ public class AddPetPhotoFragment extends Fragment {
                 + "IMG_" + timeStamp + ".jpg");
 
 
+
         return image_file;
     }
     @Override
@@ -369,8 +370,10 @@ public class AddPetPhotoFragment extends Fragment {
                             pet.setIsAdopt("no");
                             pet.setOwner_id(mAuth.getCurrentUser().getUid());
                             pet.setStatus("available");
+                            progressDialog.cancel();
 
                             mDatabaseRef.child(id).setValue(pet);
+                            getGPS();
 
                             Toast.makeText(getContext(), "Pet Added!", Toast.LENGTH_SHORT).show();
 
@@ -391,7 +394,7 @@ public class AddPetPhotoFragment extends Fragment {
             Toast.makeText(getContext(), "No file uploaded.", Toast.LENGTH_SHORT).show();
 
         }
-        progressDialog.dismiss();
+
     }
 
     private String getFileExtension(Uri uri){
