@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bgs"
+    tools:context=".PetListFragment">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/PetListRV"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:paddingTop="?attr/actionBarSize"
+        android:scrollbars="vertical"
+        tools:listitem="@layout/own_card_layout"/>
+
+</LinearLayout>

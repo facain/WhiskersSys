@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bgs"
+    tools:context=".ChatActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_chat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorthemepink">
+
+        <TextView
+            android:id="@+id/chat_ownerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="John Doe"
+            android:textColor="#fff"
+            android:textAlignment="center"
+            android:layout_marginRight="16dp"
+            android:textSize="20sp"/>
+        
+    </android.support.v7.widget.Toolbar>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/chat_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="?attr/actionBarSize"
+            android:scrollbars="vertical"
+            android:layout_above="@+id/chat_msg"
+            tools:listitem="@layout/cardlayout_chat" />
+
+                <EditText
+                    android:id="@+id/chat_msg"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginRight="55dp"
+                    android:layout_marginLeft="8dp"
+                    android:hint="Message here..." />
+
+                <ImageView
+                    android:id="@+id/send_msg"
+                    android:layout_width="39dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="20dp"
+                    android:layout_marginRight="5dp"
+                    android:src="@drawable/send" />
+
+</RelativeLayout>

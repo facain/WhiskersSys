@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#56585b"
+    android:padding="16dp"
+    tools:context=".SignUpConActivity">
+
+    <ImageView
+        android:layout_width="275dp"
+        android:layout_height="90dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="68dp"
+        android:src="@drawable/logoword" />
+
+    <EditText
+        android:id="@+id/signup_username"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="230dp"
+        android:hint="Username"
+        android:backgroundTint="#ffff"
+        android:textColorHint="#ffff"
+        android:textColor="#ffff"
+        android:drawableLeft="@drawable/person"
+        android:fontFamily="@font/roboto"
+        android:paddingLeft="8dp"/>
+
+    <EditText
+        android:id="@+id/signup_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="280dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:backgroundTint="#ffff"
+        android:textColorHint="#ffff"
+        android:textColor="#ffff"
+        android:drawableLeft="@drawable/lock"
+        android:fontFamily="@font/roboto"
+        android:paddingLeft="8dp"/>
+
+
+    <Button
+        android:id="@+id/createacct_button_"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="120dp"
+        android:background="@drawable/button_yellow"
+        android:fontFamily="@font/roboto"
+        android:text="Create An Account"
+        android:textAllCaps="false"
+        android:textColor="#ffff"
+        android:textSize="20sp"
+        android:onClick="createAccount"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp"
+        android:text="Already have an account? Login Here"
+        android:textColor="#ffff"
+        android:textSize="14sp" />
+
+</RelativeLayout>

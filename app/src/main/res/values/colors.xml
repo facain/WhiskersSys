@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#1B4F65</color>
+    <color name="colorPrimaryDark">#1B4F65</color>
+    <color name="colorAccent">#3395BF</color>
+    <color name="navBg">#545454</color>
+
+    <color name="colorthemeblue">#ffff</color>
+    <color name="colorthemeyellow">#FED68E</color>
+    <color name="colorthemeflesh">#E8CBC5</color>
+    <color name="colorthemepink">#3395BF</color>
+    <color name="colorthemecheck">#06E83A</color>
+    <color name="colorthemewrong">#E9110F</color>
+
+
+    <color name="colorthemebrown">#826B63</color>
+</resources>

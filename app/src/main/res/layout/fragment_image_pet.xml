@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddPetPhotoFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="80dp"
+            android:text="Add Pet Photo"
+            android:textStyle="bold"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/pet_btnupload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/pet_image_preview"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="33dp"
+            android:background="#3395BF"
+            android:textColor="#fff"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="Choose Image" />
+
+        <Button
+            android:id="@+id/pet_btnCamera"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/pet_btnupload"
+            android:layout_marginEnd="30dp"
+            android:background="#3395BF"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="CAMERA"
+            android:textColor="#fff" />
+
+        <Button
+            android:id="@+id/pet_addEntry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="53dp"
+            android:background="#3395BF"
+            android:textColor="#ffff"
+            android:text="Add Pet Photo" />
+
+        <ImageView
+            android:id="@+id/pet_image_preview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/person_blk"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="133dp"
+            />
+
+    </RelativeLayout>
+
+</FrameLayout>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bgs"
+    android:padding="16dp"
+    tools:context=".LoginActivity">
+
+    <ImageView
+        android:layout_width="341dp"
+        android:layout_height="160dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/finallogo" />
+
+    <EditText
+        android:id="@+id/login_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="240dp"
+        android:inputType="textEmailAddress"
+        android:hint="Email"
+        android:backgroundTint="#000"
+        android:textColorHint="#000"
+        android:textColor="#000"
+        android:drawableLeft="@drawable/person_blk"
+        android:fontFamily="@font/roboto"
+        android:paddingLeft="8dp" />
+
+    <EditText
+        android:id="@+id/login_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:backgroundTint="#000"
+        android:textColorHint="#000"
+        android:textColor="#000"
+        android:drawableLeft="@drawable/lock_blk"
+        android:fontFamily="@font/roboto"
+        android:paddingLeft="8dp" />
+
+
+    <Button
+        android:id="@+id/login_button_"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="100dp"
+        android:background="#3395BF"
+        android:fontFamily="@font/roboto"
+        android:text="Login"
+        android:textAllCaps="false"
+        android:textColor="#000"
+        android:textSize="20sp"
+        android:onClick="loginUser"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="45dp"
+        android:text="Create a new account here"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:onClick="signUpView"/>
+
+</RelativeLayout>

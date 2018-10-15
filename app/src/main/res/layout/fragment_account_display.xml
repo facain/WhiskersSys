@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AccountDisplayFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/colorthemepink">
+
+        <ImageView
+            android:layout_width="65dp"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="55dp"
+            android:src="@drawable/user" />
+
+        <TextView
+            android:id="@+id/acct_header_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="25dp"
+            android:fontFamily="@font/roboto"
+            android:text="John Doe"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/acctdisplay_fname"
+            android:layout_width="251dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="217dp"
+            android:drawableLeft="@drawable/person_blk"
+            android:drawablePadding="20dp"
+            android:text="John"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/acctdisplay_lname"
+            android:layout_width="251dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/acctdisplay_fname"
+            android:layout_centerHorizontal="true"
+            android:drawableLeft="@drawable/person_blk"
+            android:drawablePadding="20dp"
+            android:text="Doe"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/acctdisplay_email"
+            android:layout_width="251dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/acctdisplay_contact"
+            android:layout_centerHorizontal="true"
+            android:drawableLeft="@drawable/mail_blk"
+            android:drawablePadding="20dp"
+            android:text="johndoe@gmail.com"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/acctdisplay_contact"
+            android:layout_width="251dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/acctdisplay_lname"
+            android:layout_centerHorizontal="true"
+            android:drawableLeft="@drawable/phone_blk"
+            android:drawablePadding="20dp"
+            android:text="09222-1111"
+            android:textSize="16sp" />
+
+        <Button
+            android:id="@+id/acctdisplay_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="145dp"
+            android:textColor="#ffff"
+            android:background="#3395BF"
+            android:textSize="14dp"
+
+            android:text="Edit Profile" />
+
+        <Button
+            android:id="@+id/acctdisplay_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="88dp"
+            android:background="#3395BF"
+            android:textColor="#ffff"
+            android:textSize="14dp"
+            android:text="Update Address Location" />
+
+        <Button
+            android:id="@+id/acctdisplay_remove"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
+            android:background="#3395BF"
+            android:textColor="#ffff"
+            android:textSize="14dp"
+            android:text="Deactivate Account" />
+    </RelativeLayout>
+
+</FrameLayout>
