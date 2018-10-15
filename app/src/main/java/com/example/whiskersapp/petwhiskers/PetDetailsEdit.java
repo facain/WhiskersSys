@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.content.Intent;
@@ -42,6 +43,7 @@ public class PetDetailsEdit extends AppCompatActivity {
     FloatingActionButton fab;
     String imgurl;
     Toolbar toolbar;
+    Button adopt,unAdopt;
 
     String id = "";
     private FirebaseDatabase firebaseDatabase;
@@ -82,7 +84,7 @@ public class PetDetailsEdit extends AppCompatActivity {
         birthdate = findViewById(R.id.petedits_birthdate);
         gender = findViewById(R.id.petedits_gender);
         status = findViewById(R.id.petedits_status);
-
+        adopt = findViewById(R.id.petedit_adopt);
         collapsingToolbarLayout = findViewById(R.id.collapsing_petedit);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
         collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
@@ -114,7 +116,11 @@ public class PetDetailsEdit extends AppCompatActivity {
                 birthdate.setText(pet.getBirthdate());
 
                 imgurl = pet.getImgUrl();
-
+                if(pet.getIsAdopt().equals("no")){
+                    adopt.setText("Mark as Adopted");
+                }else{
+                    adopt.setText("Unmark");
+                }
                 if (!imageText.equals("default_image")) {
                     Picasso.with(getBaseContext()).load(pet.getImgUrl()).networkPolicy(NetworkPolicy.OFFLINE)
                             .placeholder(R.drawable.default_image).into(petImage, new Callback() {
@@ -185,32 +191,44 @@ public class PetDetailsEdit extends AppCompatActivity {
     public void markAdopt(View view){
         final String petId = getIntent().getStringExtra("id");
 
-        if(!TextUtils.isEmpty(petId)){
-            table_pet_entry.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
-                    Pet pet = null;
-                    for(DataSnapshot ds: dataSnapshot.getChildren()){
-                        Pet test = ds.getValue(Pet.class);
+            if (!TextUtils.isEmpty(petId)) {
+                table_pet_entry.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Pet pet = null;
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                            Pet test = ds.getValue(Pet.class);
 
-                        if(test.getId().equals(petId)){
-                            pet = test;
+                            if (test.getId().equals(petId)) {
+                                pet = test;
+                            }
+                        }
+
+                        if (pet != null) {
+                            if(pet.getIsAdopt().equals("no")) {
+                                pet.setIsAdopt("yes");
+                                table_pet_entry.child(pet.getId()).setValue(pet);
+                                Toast.makeText(getApplicationContext(), "Pet Marked as Adopted", Toast.LENGTH_SHORT).show();
+                                adopt.setText("Unmark");
+                            }else{
+                                pet.setIsAdopt("no");
+                                table_pet_entry.child(pet.getId()).setValue(pet);
+                                Toast.makeText(getApplicationContext(), "Unmarked", Toast.LENGTH_SHORT).show();
+                                adopt.setText("Mark as Adopted");
+                            }
                         }
                     }
 
-                    if(pet != null){
-                        pet.setIsAdopt("yes");
-                        table_pet_entry.child(pet.getId()).setValue(pet);
-                        Toast.makeText(getApplicationContext(), "Pet Marked as Adopted", Toast.LENGTH_SHORT).show();
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
                     }
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
+                });
+            }
         }
-    }
+
+
+
+
 
 }
