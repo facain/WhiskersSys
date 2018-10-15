@@ -4,6 +4,7 @@ package com.example.whiskersapp.petwhiskers;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
@@ -58,7 +59,7 @@ public class AccountDisplayFragment extends Fragment {
     private AlertDialog.Builder choice;
     private AlertDialog alert;
 
-    FirebaseDatabase fbData;
+    FirebaseDatabase fbData,firebaseDatabase;
     FirebaseAuth mAuth;
     DatabaseReference dbRef;
     DatabaseReference dbLoc;
@@ -185,18 +186,50 @@ public class AccountDisplayFragment extends Fragment {
             buildLocationCallback();
 
             fusedLocation = LocationServices.getFusedLocationProviderClient(getActivity());
+            firebaseDatabase = FirebaseDatabase.getInstance();
 
-            updateLocation.setOnClickListener(new View.OnClickListener() {
+            dbRef = firebaseDatabase.getReference("pet");
+            dbRef.addValueEventListener(new ValueEventListener() {
                 @Override
-                public void onClick(View view) {
-                    if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                            ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-                        ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
-                        return;
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    Pet pet=null;
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        Pet test = ds.getValue(Pet.class);
+                        if (test.getOwner_id().equals(mAuth.getCurrentUser().getUid()) && test.getVerStat().equals("1")) {
+                            pet = test;
+                        }
                     }
-                    fusedLocation.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
+
+                    if(pet!=null) {
+                        updateLocation.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                                        ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
+                                    return;
+                                }
+                                fusedLocation.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
+
+
+
+                            }
+                        });
+
+                    } else{
+                        updateLocation.setBackgroundColor(Color.GRAY);
+                        updateLocation.setFocusable(false);
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
                 }
             });
+
+
         }
     }
 
