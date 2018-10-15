@@ -1,18 +1,24 @@
 package com.example.whiskersapp.petwhiskers;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
+
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+
+import android.location.Location;
+import android.location.LocationManager;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Looper;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
@@ -28,18 +34,29 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.content.Intent;
 import android.widget.Toast;
-import android.content.pm.PackageManager;
+
+
+import com.example.whiskersapp.petwhiskers.Model.LocationAddress;
 import com.example.whiskersapp.petwhiskers.Model.Pet;
+
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationCallback;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
+
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -54,6 +71,8 @@ import static android.app.Activity.RESULT_OK;
 
 
 public class AddPetPhotoFragment extends Fragment {
+    private static final int REQUEST_CODE = 1000;
+
     private Button btnfilechoose;
     private Button btnTakePic;
     private Button btnAddPet;
@@ -69,6 +88,17 @@ public class AddPetPhotoFragment extends Fragment {
     private ThumbnailUtils thumbnail;
 
     private ProgressDialog progressDialog;
+
+    private  FirebaseDatabase locationDb;
+    private DatabaseReference dbRef;
+
+    private int result;
+
+    private FusedLocationProviderClient fusedLocation;
+    private LocationRequest locationRequest;
+    private LocationCallback locationCallback;
+
+
 
     @Nullable
     @Override
@@ -93,6 +123,10 @@ public class AddPetPhotoFragment extends Fragment {
         pet.setTransaction(bundle.getString("trans"));
         pet.setIsAdopt("no");
         pet.setVerStat("0");
+
+        locationDb = FirebaseDatabase.getInstance();
+        dbRef = locationDb.getReference("location");
+        mAuth = FirebaseAuth.getInstance();
 
         Date tentime = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss a");
@@ -132,12 +166,99 @@ public class AddPetPhotoFragment extends Fragment {
                 progressDialog.setMessage("Creating Pet Entry...");
                 progressDialog.show();
                 uploadFile();
-
-
             }
         });
 
     }
+
+    public void getGPS(){
+        LocationManager locationManager = (LocationManager)getActivity().getSystemService(Context.LOCATION_SERVICE);
+
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
+            return;
+        } else {
+            Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+            if(location != null){
+                double lati = location.getLatitude();
+                double longi = location.getLongitude();
+
+                String latitude = String.valueOf(lati);
+                String longtitude = String.valueOf(longi);
+                int res = locationAdd(latitude, longtitude);
+
+                if(res == 0){
+                    Toast.makeText(getActivity(), "Location added! "+latitude, Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getActivity(), "Location already found! "+latitude, Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch(REQUEST_CODE){
+            case REQUEST_CODE:
+            {
+                if(grantResults.length >0 ){
+                    if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+
+                    }else if(grantResults[0] == PackageManager.PERMISSION_DENIED){
+
+                    }
+                }
+            }
+        }
+    }
+
+    public int locationAdd(final String latitude, final String longtitude){
+
+        result = 0; // 0 - if location is not yet added
+
+        dbRef.orderByChild("owner_id").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                LocationAddress test = null;
+                String mAuthUser = mAuth.getCurrentUser().getUid();
+
+                for(DataSnapshot ds: dataSnapshot.getChildren()){
+                    test = ds.getValue(LocationAddress.class);
+
+                    if(test.getOwner_id() == mAuthUser){
+                        result = 1; // 1 - If location is already added
+                    }
+                }
+
+                if(result == 0){
+                    LocationAddress loc = new LocationAddress();
+                    String id = dbRef.push().getKey();
+
+                    loc.setLongitude(longtitude);
+                    loc.setLatitude(latitude);
+                    loc.setOwner_id(mAuthUser);
+                    loc.setId(id);
+
+                    dbRef.child(id).setValue(loc);
+                }else{
+                    Toast.makeText(getActivity(),"Location already added!", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        return result;
+    }
+
 
     public void takePicture(){
 
@@ -187,7 +308,7 @@ public class AddPetPhotoFragment extends Fragment {
             System.out.println("ACAINNN"+file.toString());
             System.out.println("HELLOWW");
             try {
-                System.out.println("ACAINNN"+file.toString());
+                System.out.println("ACAINNN"+file.toString()); //WEW hahaha
                 System.out.println("HELLOWW");
                 imagePic = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(),file);
                 imagePreview.setImageBitmap( thumbnail.extractThumbnail(imagePic,imagePic.getWidth(),imagePic.getHeight()));
@@ -195,18 +316,10 @@ public class AddPetPhotoFragment extends Fragment {
                 e.printStackTrace();
             }
 
-
-
-
         }
     }
 
-
-
-
-
     private void uploadFile(){
-
         if(imageUri != null){
 
             StorageReference fileRef = mStoreRef.child(System.currentTimeMillis()
@@ -225,6 +338,7 @@ public class AddPetPhotoFragment extends Fragment {
                             progressDialog.cancel();
 
                             mDatabaseRef.child(id).setValue(pet);
+                            getGPS();
                             Toast.makeText(getContext(), "Pet Added!", Toast.LENGTH_SHORT).show();
                             Fragment fragment = new PetFragment();
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -242,7 +356,7 @@ public class AddPetPhotoFragment extends Fragment {
                     });
 
 
-            }else if(imagePic!=null){
+        }else if(imagePic!=null){
             StorageReference fileRef = mStoreRef.child(file.toString());
             fileRef.putFile(file)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -259,6 +373,7 @@ public class AddPetPhotoFragment extends Fragment {
                             mDatabaseRef.child(id).setValue(pet);
 
                             Toast.makeText(getContext(), "Pet Added!", Toast.LENGTH_SHORT).show();
+
                             Fragment fragment = new PetFragment();
                             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -276,7 +391,7 @@ public class AddPetPhotoFragment extends Fragment {
             Toast.makeText(getContext(), "No file uploaded.", Toast.LENGTH_SHORT).show();
 
         }
-
+        progressDialog.dismiss();
     }
 
     private String getFileExtension(Uri uri){
@@ -285,4 +400,5 @@ public class AddPetPhotoFragment extends Fragment {
 
         return mimeTypeMap.getExtensionFromMimeType(contentResolver.getType(uri));
     }
+
 }
