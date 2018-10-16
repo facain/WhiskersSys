@@ -24,6 +24,16 @@ public class User {
         this.banStat = banStat;
     }
 
+    public User(String id, String fname, String lname, String contact, String email, String password) {
+        this.id = id;
+        this.fname = fname;
+        this.lname = lname;
+        this.contact = contact;
+        this.email = email;
+        this.password = password;
+
+    }
+
     public String getId() {
         return id;
     }

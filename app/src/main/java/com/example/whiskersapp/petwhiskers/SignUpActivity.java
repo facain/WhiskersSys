@@ -67,6 +67,7 @@ public class SignUpActivity extends AppCompatActivity {
         progressDialog.setMessage("Creating account...");
         progressDialog.show();
 
+
         if(!TextUtils.isEmpty(fname) && !TextUtils.isEmpty(lname) && !TextUtils.isEmpty(contact_num)
                 && !TextUtils.isEmpty(email_add) && !TextUtils.isEmpty(pword)){
             if(fname.matches("[a-zA-Z][a-zA-Z ]+") && lname.matches("[a-zA-Z][a-zA-Z ]+")){
@@ -105,11 +106,10 @@ public class SignUpActivity extends AppCompatActivity {
             }
 
 
-                }else{
+        }else{
             progressDialog.dismiss();
             Toast.makeText(getApplicationContext(), "Please fill in the missing field/s!", Toast.LENGTH_LONG).show();
         }
-
     }
 
 

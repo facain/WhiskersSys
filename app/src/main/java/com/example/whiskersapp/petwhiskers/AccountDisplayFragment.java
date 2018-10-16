@@ -29,6 +29,9 @@ import com.example.whiskersapp.petwhiskers.Model.LocationAddress;
 import com.example.whiskersapp.petwhiskers.Model.Pet;
 import com.example.whiskersapp.petwhiskers.Model.User;
 import com.example.whiskersapp.petwhiskers.Model.UserChat;
+import com.facebook.AccessToken;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
@@ -70,6 +73,8 @@ public class AccountDisplayFragment extends Fragment {
     private FusedLocationProviderClient fusedLocation;
     private LocationRequest locationRequest;
     private LocationCallback locationCallback;
+    private GoogleSignInAccount gToken;
+
 
     @Nullable
     @Override
@@ -104,6 +109,8 @@ public class AccountDisplayFragment extends Fragment {
         email = view.findViewById(R.id.acctdisplay_email);
         header_name = view.findViewById(R.id.acct_header_name);
         updateLocation = view.findViewById(R.id.acctdisplay_location);
+        AccessToken token;
+        gToken = GoogleSignIn.getLastSignedInAccount(getContext());
 
         mAuth = FirebaseAuth.getInstance();
         fbData = FirebaseDatabase.getInstance();

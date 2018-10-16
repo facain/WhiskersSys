@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,6 +69,8 @@ public class EditAccountFragment extends Fragment {
         editProfile = view.findViewById(R.id.editProfile);
         if(token!=null || gToken !=null){
             password.setVisibility(View.INVISIBLE);
+            contact.setFocusable(false);
+            contact.setTextColor(Color.GRAY);
             email.setFocusable(false);
             email.setTextColor(Color.GRAY);
         }
@@ -121,39 +124,47 @@ public class EditAccountFragment extends Fragment {
         return user;
     }
 
-    public void updateUserAccount(final User user){
+    public void updateUserAccount(final User user) {
         progressDialog.setMessage("Updating User...");
         progressDialog.show();
-        if(!user.getEmail().equals(fbAUth.getCurrentUser().getEmail())){
-            fbAUth.getCurrentUser().updateEmail(user.getEmail()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful()){
+        if (!TextUtils.isEmpty(user.getFname()) && !TextUtils.isEmpty(user.getLname()) && !TextUtils.isEmpty(user.getContact())
+                && !TextUtils.isEmpty(user.getEmail())) {
+            if (user.getFname().matches("[a-zA-Z][a-zA-Z ]+") && user.getLname().matches("[a-zA-Z][a-zA-Z ]+")) {
+                if ((user.getContact().length() == 11 || user.getContact().length() == 12 || user.getContact().length() == 0) && user.getContact().matches("[0-9 ]+")) {
+                    if (!user.getEmail().equals(fbAUth.getCurrentUser().getEmail())) {
+                        fbAUth.getCurrentUser().updateEmail(user.getEmail()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    dbRef.child(user.getId()).setValue(user);
+                                } else {
+                                    Toast.makeText(getView().getContext(), "Error!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+                        fbAUth.getCurrentUser().updatePassword(user.getPassword()).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(getView().getContext(), "Updated Successfully!", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+
+                    } else {
                         dbRef.child(user.getId()).setValue(user);
-                    }else{
-                        Toast.makeText(getView().getContext(),"Error!",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getView().getContext(), "Updated Successfully!", Toast.LENGTH_SHORT).show();
                     }
                 }
-            });
-
-            fbAUth.getCurrentUser().updatePassword(user.getPassword()).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful()){
-                        Toast.makeText(getView().getContext(),"Updated Successfully!",Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-
-        }else{
-            dbRef.child(user.getId()).setValue(user);
-            Toast.makeText(getView().getContext(),"Updated Successfully!",Toast.LENGTH_SHORT).show();
+            }
         }
+            progressDialog.dismiss();
+            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.contentFrame, new AccountDisplayFragment());
+            fragmentTransaction.commit();
 
-        progressDialog.dismiss();
-        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.contentFrame, new AccountDisplayFragment());
-        fragmentTransaction.commit();
+
     }
 }
