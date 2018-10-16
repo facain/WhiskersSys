@@ -69,7 +69,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         if(!TextUtils.isEmpty(fname) && !TextUtils.isEmpty(lname) && !TextUtils.isEmpty(contact_num)
                 && !TextUtils.isEmpty(email_add) && !TextUtils.isEmpty(pword)){
-            if(fname.matches("[a-z]+") && lname.matches("[a-z]+")){
+            if(fname.matches("[a-zA-Z][a-zA-Z ]+") && lname.matches("[a-zA-Z][a-zA-Z ]+")){
                 if ((contact_num.length() == 11 || contact_num.length() == 12) && contact_num.matches("[0-9]+")) {
                     if(pword.equals(cpword)){
                         userAuth.createUserWithEmailAndPassword(email_add, pword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
