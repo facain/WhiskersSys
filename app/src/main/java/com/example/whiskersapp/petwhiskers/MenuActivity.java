@@ -93,7 +93,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                                     ((TextView) findViewById(R.id.navHeader_name)).setText(user.getFname() + " " + user.getLname());
                                 }else{
                                 choice = new AlertDialog.Builder(MenuActivity.this);
-                                choice.setTitle("You Have been banned");
+                                choice.setTitle("You have been banned");
+                                choice.setMessage("(Please Contact Administrator at admin@whiskerssystem.com)");
 
                                 choice.setPositiveButton("Log Out", new DialogInterface.OnClickListener() {
                                     @Override

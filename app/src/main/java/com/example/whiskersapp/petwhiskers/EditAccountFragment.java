@@ -158,6 +158,9 @@ public class EditAccountFragment extends Fragment {
                     }
                 }
             }
+        }else{
+            Toast.makeText(getView().getContext(), "Invalid Input", Toast.LENGTH_SHORT).show();
+
         }
             progressDialog.dismiss();
             FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

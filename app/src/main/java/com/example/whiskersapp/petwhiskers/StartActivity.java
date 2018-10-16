@@ -4,7 +4,6 @@ package com.example.whiskersapp.petwhiskers;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -131,7 +130,7 @@ public class StartActivity extends AppCompatActivity {
 
             @Override
             public void onCancel() {
-               Log.e("TAG","LOL"); // App code
+                Log.e("TAG","LOL"); // App code
             }
 
             @Override
@@ -222,7 +221,7 @@ public class StartActivity extends AppCompatActivity {
         }else{
             callbackManager.onActivityResult(requestCode, resultCode, data);
         }
-     }
+    }
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
         Log.e("firebaseAuthWithGoogle:" ,"" +account.getId());
@@ -299,41 +298,21 @@ public class StartActivity extends AppCompatActivity {
                     }
                 });
     }
-    private void storeProfileInfo(final String firstName, final String lastName, final String id, final String contact, final String email, final String password){
-        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("user_account");
+    private void storeProfileInfo(String firstName, String lastName, String id, String contact, String email, String password){
         final User logIn = new User(id,firstName,lastName,contact,email,password,"0");
-        userRef.orderByChild("id").equalTo(id).addListenerForSingleValueEvent(new ValueEventListener() {
+        dbRef.child(id).setValue(logIn);
+        dbRef.addValueEventListener(new ValueEventListener(){
+
             @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.getValue()!=null){
+            public void onDataChange(DataSnapshot dataSnapshot) {
 
-                                }else {
-
-
-                    dbRef.child(id).setValue(logIn);
-                    dbRef.addValueEventListener(new ValueEventListener() {
-
-                        @Override
-                        public void onDataChange(DataSnapshot dataSnapshot) {
-
-                        }
-
-                        @Override
-                        public void onCancelled(DatabaseError databaseError) {
-
-                        }
-                    });
-                }
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+            public void onCancelled(DatabaseError databaseError) {
 
             }
         });
-
-
-
     }
 
 
