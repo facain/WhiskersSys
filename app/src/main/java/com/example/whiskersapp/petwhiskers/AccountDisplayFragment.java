@@ -170,13 +170,6 @@ public class AccountDisplayFragment extends Fragment {
 
         alert = choice.create();
 
-        removeProfile = view.findViewById(R.id.acctdisplay_remove);
-        removeProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                alert.show();
-            }
-        });
 
         if (ActivityCompat.shouldShowRequestPermissionRationale(getActivity(),
                 android.Manifest.permission.ACCESS_FINE_LOCATION)) {

@@ -110,6 +110,7 @@ public class AddPetPhotoFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Bundle bundle = getArguments();
+
         pet = new Pet();
 
         pet.setPet_name(bundle.getString("name"));
@@ -230,7 +231,7 @@ public class AddPetPhotoFragment extends Fragment {
                 for(DataSnapshot ds: dataSnapshot.getChildren()){
                     test = ds.getValue(LocationAddress.class);
 
-                    if(test.getOwner_id() == mAuthUser){
+                    if(test.getOwner_id().equals(mAuthUser)){
                         result = 1; // 1 - If location is already added
                     }
                 }

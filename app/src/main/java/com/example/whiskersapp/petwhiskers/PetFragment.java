@@ -2,6 +2,7 @@ package com.example.whiskersapp.petwhiskers;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -29,7 +30,8 @@ public class PetFragment extends Fragment{
         toolbar.setTitle("Pet Stop");
         tabLayout = view.findViewById(R.id.pet_tablayout);
         viewPager = view.findViewById(R.id.pet_viewpager);
-
+        FloatingActionButton floating = getActivity().findViewById(R.id.cpefab);
+        floating.setVisibility(View.VISIBLE);
         PetViewPagerAdapter petAdapter = new PetViewPagerAdapter(getChildFragmentManager());
 
         petAdapter.getFragment(new PetListFragment(), "My Entry");

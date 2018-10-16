@@ -109,17 +109,6 @@
             android:textSize="14dp"
             android:text="Update Address Location" />
 
-        <Button
-            android:id="@+id/acctdisplay_remove"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="30dp"
-            android:background="#3395BF"
-            android:textColor="#ffff"
-            android:textSize="14dp"
-            android:text="Deactivate Account" />
     </RelativeLayout>
 
 </FrameLayout>

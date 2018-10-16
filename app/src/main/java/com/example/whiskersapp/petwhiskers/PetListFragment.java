@@ -39,7 +39,7 @@ public class PetListFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerview = view.findViewById(R.id.PetListRV);
         check = view.findViewById(R.id.pet_avail);
@@ -56,13 +56,20 @@ public class PetListFragment extends Fragment {
         ) {
             @Override
             protected void populateViewHolder(PetListViewHolder viewHolder, Pet model, final int position) {
-                if(model.getVerStat().equals("0")) {
-                    viewHolder.petCheck.setVisibility(View.INVISIBLE);
-                    viewHolder.petWrong.setVisibility(View.VISIBLE);
-                }else{
+                if(model.getVerStat().equals("1")) {
                     viewHolder.petCheck.setVisibility(View.VISIBLE);
                     viewHolder.petWrong.setVisibility(View.INVISIBLE);
+                    viewHolder.petPend.setVisibility(View.INVISIBLE);
+                }else if(model.getVerStat().equals("2")){
+                    viewHolder.petCheck.setVisibility(View.INVISIBLE);
+                    viewHolder.petWrong.setVisibility(View.VISIBLE);
+                    viewHolder.petPend.setVisibility(View.INVISIBLE);
 
+
+                }else if(model.getVerStat().equals("0")) {
+                    viewHolder.petCheck.setVisibility(View.INVISIBLE);
+                    viewHolder.petWrong.setVisibility(View.INVISIBLE);
+                    viewHolder.petPend.setVisibility(View.VISIBLE);
                 }
                 if(model.getIsAdopt().equals("no")){
                     viewHolder.setPetStatus("Available");

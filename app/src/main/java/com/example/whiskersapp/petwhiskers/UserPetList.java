@@ -1,6 +1,7 @@
 package com.example.whiskersapp.petwhiskers;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -65,9 +66,24 @@ public class UserPetList extends AppCompatActivity {
                 recyclerview = findViewById(R.id.UserPetListRV);
                 recyclerview.setLayoutManager(new LinearLayoutManager(this));
                 firebaseDatabase = FirebaseDatabase.getInstance();
+
                 table_pet_entry = firebaseDatabase.getReference("pet");
                 table_pet_user = firebaseDatabase.getReference("user_account");
 
+                table_pet_entry.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Pet test;
+                        for(DataSnapshot ds:dataSnapshot.getChildren()){
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
 
                 mAuth = FirebaseAuth.getInstance();
                 getPetOwnerDetails(id);

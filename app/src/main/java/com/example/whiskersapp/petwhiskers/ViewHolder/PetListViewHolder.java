@@ -17,7 +17,7 @@ import com.squareup.picasso.Picasso;
 
 public class PetListViewHolder extends RecyclerView.ViewHolder{
     public static TextView petBreed, petStatus, petGender,petName;
-    public static ImageView petImage,petCheck,petWrong;
+    public static ImageView petImage,petCheck,petWrong,petPend;
     String currency = "₱";
     public static CardView cardView;
 
@@ -25,6 +25,7 @@ public class PetListViewHolder extends RecyclerView.ViewHolder{
         super(itemView);
         petCheck = (ImageView)itemView.findViewById(R.id.pet_avail);
         petWrong = (ImageView)itemView.findViewById(R.id.pet_notAvail);
+        petPend = (ImageView)itemView.findViewById(R.id.pet_pending);
         petImage = (ImageView)itemView.findViewById(R.id.pet_image);
         petName = (TextView)itemView.findViewById(R.id.pet_name);
         petBreed = (TextView)itemView.findViewById(R.id.pet_breed);

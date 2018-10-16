@@ -147,12 +147,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
 
                 numOfEntries = (TextView)v.findViewById(R.id.num_of_entries);
 
-                if(ctrPet[0] > 0){
 
-                    numOfEntries.setText("No. of Entries"+ctrPet[0]);
-                }else{
-                    arg0.setVisible(false);
-                }
 
 
                 //       final CircleImageView petImg = (CircleImageView)v.findViewById(R.id.user_img_info);
