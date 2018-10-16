@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bgs"
+    android:orientation="vertical"
+    tools:context=".EditPetPhoto">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_edit_photo"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorthemepink"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:text="Edit Pet Photo"
+            android:textStyle="bold"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/petedit_btnupload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/petedit_image_preview"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="30dp"
+            android:background="#3395BF"
+            android:textColor="#fff"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="Choose Image" />
+
+        <Button
+            android:id="@+id/petedit_btnCamera"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/petedit_btnupload"
+            android:layout_marginEnd="30dp"
+            android:background="#3395BF"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:text="CAMERA"
+            android:textColor="#fff" />
+
+        <Button
+            android:id="@+id/petedit_addEntry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="53dp"
+            android:background="#3395BF"
+            android:textColor="#ffff"
+            android:text="Edit Pet Photo" />
+
+        <ImageView
+            android:id="@+id/petedit_image_preview"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@drawable/person_blk"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="133dp"
+            />
+
+    </RelativeLayout>
+
+</LinearLayout>

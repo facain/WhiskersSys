@@ -3,6 +3,7 @@ package com.example.whiskersapp.petwhiskers;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
@@ -29,6 +30,7 @@ public class EditPetEntry extends AppCompatActivity {
     private TextView petBday;
     private TextView petDesc;
     private Spinner petCategory;
+    private Toolbar toolbar;
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference dbRef;
@@ -52,12 +54,25 @@ public class EditPetEntry extends AppCompatActivity {
         petDesc = findViewById(R.id.petedit_desc);
         petBday = findViewById(R.id.petedit_bday);
         petFurcolor = findViewById(R.id.petedit_furcolor);
+        toolbar = findViewById(R.id.toolbar_edit_pet);
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
 
         petGenderList = new ArrayList<String>();
         petCategoryList = new ArrayList<String>();
+
+        toolbar.setNavigationIcon(R.drawable.ic_back_24dp);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         petGenderList.add("Male");
         petGenderList.add("Female");

@@ -17,7 +17,7 @@
         <item name="android:textStyle">normal</item>
     </style>
     <style name="ExpandedAppBar" parent="@android:style/TextAppearance.Material.Title">
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/colorthemepink</item>
         <item name="android:textStyle">normal</item>
     </style>
 

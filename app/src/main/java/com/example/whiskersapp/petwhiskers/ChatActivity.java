@@ -76,7 +76,6 @@ public class ChatActivity extends AppCompatActivity {
         toolbar = findViewById(R.id.toolbar_chat);
         toolbar.setNavigationIcon(R.drawable.ic_back_24dp);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         user_one_id = getIntent().getStringExtra("user_one_id");
         user_two_id = getIntent().getStringExtra("user_two_id");

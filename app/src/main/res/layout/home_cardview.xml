@@ -11,7 +11,6 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:background="@drawable/bgs"
-            android:paddingLeft="15dp"
             android:layout_height="wrap_content">
 
             <RelativeLayout
@@ -73,7 +72,7 @@
 
             <Button
                 android:id="@+id/pet_featuremsg"
-                android:layout_width="325dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentStart="true"

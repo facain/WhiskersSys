@@ -30,10 +30,10 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_below="@+id/img_background"
-            android:src="@drawable/message_button"
+            android:src="@drawable/icon_message"
             android:layout_marginTop="-20dp"
-            android:layout_marginLeft="5dp"
-            android:layout_toRightOf="@+id/img_user_profile" />
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@+id/img_user_profile" />
         <TextView
             android:id="@+id/text_profile_user"
             android:layout_width="wrap_content"
@@ -53,7 +53,7 @@
             android:layout_below="@+id/text_profile_user"
             android:textSize="15sp"
             android:text="1km away"
-            android:drawableLeft="@drawable/ic_location_on_black_24dp" />
+            android:drawableStart="@drawable/ic_location_on_black_24dp" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/UserPetListRV"

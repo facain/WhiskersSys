@@ -57,7 +57,7 @@ public class PetDetails extends AppCompatActivity {
         table_pet_entry = firebaseDatabase.getReference("pet");
         mAuth = FirebaseAuth.getInstance();
 
-        fab = findViewById(R.id.fav_fab);
+        fab = findViewById(R.id.fav_fab_bookmark);
         petImage =findViewById(R.id.img_pet);
         petBreed = findViewById(R.id.pet_breed);
         petDesc = findViewById(R.id.pet_description_details);
@@ -93,7 +93,12 @@ public class PetDetails extends AppCompatActivity {
                 collapsingToolbarLayout.setTitle(pet.getPet_name());
                 petBreed.setText(pet.getBreed());
                 petDesc.setText(pet.getDetails());
-                status.setText(pet.getStatus());
+                if(pet.getIsAdopt().equals("no")){
+                    status.setText("Available");
+                }else{
+                    status.setText("Adopted");
+
+                }
                 eyecolor.setText(pet.getEyecolor());
                 furcolor.setText(pet.getFurcolor());
                 category.setText(pet.getCategory());

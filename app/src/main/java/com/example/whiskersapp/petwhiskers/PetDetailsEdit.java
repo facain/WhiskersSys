@@ -74,7 +74,7 @@ public class PetDetailsEdit extends AppCompatActivity {
         table_pet_entry = firebaseDatabase.getReference("pet");
         dbImage = FirebaseStorage.getInstance();
 
-        fab = (FloatingActionButton)findViewById(R.id.fav_fab);
+        fab = (FloatingActionButton)findViewById(R.id.fav_fab_edit);
         petImage =(ImageView)findViewById(R.id.img_petedit);
         petBreed = (TextView)findViewById(R.id.petedits_breed);
         petDesc = (TextView)findViewById(R.id.petedits_description_details);
@@ -93,6 +93,14 @@ public class PetDetailsEdit extends AppCompatActivity {
             id = getIntent().getStringExtra("id");
             if(!id.isEmpty()){
                 getPetDetails(id);
+                fab.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(PetDetailsEdit.this, EditPetPhoto.class);
+                        intent.putExtra("id", id);
+                        startActivity(intent);
+                    }
+                });
             }
         }
     }
@@ -118,8 +126,10 @@ public class PetDetailsEdit extends AppCompatActivity {
                 imgurl = pet.getImgUrl();
                 if(pet.getIsAdopt().equals("no")){
                     adopt.setText("Mark as Adopted");
+                    status.setText("Available");
                 }else{
                     adopt.setText("Unmark");
+                    status.setText("Adopted");
                 }
                 if (!imageText.equals("default_image")) {
                     Picasso.with(getBaseContext()).load(pet.getImgUrl()).networkPolicy(NetworkPolicy.OFFLINE)

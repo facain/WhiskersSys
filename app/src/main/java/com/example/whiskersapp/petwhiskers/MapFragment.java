@@ -121,7 +121,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
             public View getInfoWindow(Marker arg0) {
                 final LocationAddress userLoc  = markerUserHashMap.get(arg0);
                 // Getting view from the layout file info_window_layout
-
+                final int[] ctrPet = {0};
                 View v = getLayoutInflater().inflate(R.layout.custom_info_contents, null);
                 petImg = (CircleImageView)v.findViewById(R.id.user_img_info);
                 table_pet = firebaseDatabase.getReference("pet");
@@ -134,6 +134,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
                             pet = children.getValue(Pet.class);
                             if(pet.getOwner_id().equals(userLoc.getOwner_id()) && pet.getIsAdopt().equals("no") && pet.getVerStat().equals("1")){
                                 ctr++;
+                                ctrPet[0] = ctr;
                             }
                         }
                     }
@@ -146,7 +147,12 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
 
                 numOfEntries = (TextView)v.findViewById(R.id.num_of_entries);
 
-                numOfEntries.setText(ctr+" Entries");
+                if(ctrPet[0] > 0){
+
+                    numOfEntries.setText("No. of Entries"+ctrPet[0]);
+                }else{
+                    arg0.setVisible(false);
+                }
 
 
                 //       final CircleImageView petImg = (CircleImageView)v.findViewById(R.id.user_img_info);
@@ -362,7 +368,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
                         break;
                     case RESULT_CANCELED:
                         // The user was asked to change settings, but chose not to
-                        Log.d("Activity","Canccel");
+                        Log.d("Activity","Cancel");
 
                         Toast.makeText(getContext(), "Permission Denied!", Toast.LENGTH_SHORT).show();
                         break;
