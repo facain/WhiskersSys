@@ -3,133 +3,151 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:padding="11dp"
     tools:context=".PetEntryFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="470dp"
         android:layout_marginTop="60dp"
-        android:text="Add Pet Entry"
-        android:textAlignment="center"
-        android:textColor="#000"
-        android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/pet_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:hint="Pet Name"
-        android:inputType="textPersonName"/>
+        android:background="@drawable/layout_border">
 
-    <EditText
-        android:id="@+id/pet_breed"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="145dp"
-        android:hint="Breed"
-        android:inputType="text"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Birthdate"
-        android:textSize="20sp"
-        android:layout_marginTop="250dp"
-        android:layout_marginLeft="5dp"
-        android:textColor="#000"/>
+        <TextView
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="165dp"
-        android:layout_marginTop="155dp"
-        android:text="Gender"
-        android:textColor="#000"
-        android:textSize="20sp" />
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Add Pet Entry"
+            android:textAlignment="center"
+            android:textColor="#000"
+            android:textSize="20sp" />
 
-    <Spinner
-        android:id="@+id/pet_gender"
-        android:layout_width="111dp"
-        android:layout_height="36dp"
-        android:layout_marginLeft="240dp"
-        android:layout_marginTop="150dp" />
+        <EditText
+            android:id="@+id/pet_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="Pet Name"
+            android:inputType="textPersonName" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="290dp"
-        android:text="Category"
-        android:textColor="#000"
-        android:textSize="20sp" />
+        <EditText
+            android:id="@+id/pet_breed"
+            android:layout_width="160dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="105dp"
+            android:hint="Breed"
+            android:inputType="text" />
 
-    <Spinner
-        android:id="@+id/pet_category"
-        android:layout_width="111dp"
-        android:layout_height="36dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="285dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="210dp"
+            android:layout_marginLeft="15dp"
+            android:text="Birthdate"
+            android:textColor="#000"
+            android:textSize="20sp" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="330dp"
-        android:text="Transaction"
-        android:textColor="#000"
-        android:textSize="20sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="165dp"
+            android:layout_marginTop="115dp"
+            android:text="Gender"
+            android:textColor="#000"
+            android:textSize="20sp" />
 
-    <Spinner
-        android:id="@+id/pet_trans"
-        android:layout_width="111dp"
-        android:layout_height="36dp"
-        android:layout_marginLeft="120dp"
-        android:layout_marginTop="325dp" />
+        <Spinner
+            android:id="@+id/pet_gender"
+            android:layout_width="111dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="240dp"
+            android:layout_marginTop="110dp" />
 
-    <EditText
-        android:id="@+id/pet_bday"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="240dp"
-        android:layout_marginLeft="100dp"
-        android:hint="MM - DD - YYYY"
-        android:inputType="date"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="250dp"
+            android:text="Category"
+            android:textColor="#000"
+            android:textSize="20sp" />
 
-    <EditText
-        android:id="@+id/pet_furcolor"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="190dp"
-        android:hint="Fur Color"
-        android:inputType="text"/>
+        <Spinner
+            android:id="@+id/pet_category"
+            android:layout_width="111dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="245dp" />
 
-    <EditText
-        android:id="@+id/pet_eyecolor"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="190dp"
-        android:layout_marginLeft="170dp"
-        android:hint="Eye Color"
-        android:inputType="text"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="290dp"
+            android:text="Transaction"
+            android:textColor="#000"
+            android:textSize="20sp" />
 
-    <Button
-        android:id="@+id/pet_proceedAdd"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Add Entry"
-        android:fontFamily="@font/roboto"
-        android:textColor="#ffff"
-        android:layout_marginTop="460dp"
-        android:background="#3395BF" />
+        <Spinner
+            android:id="@+id/pet_trans"
+            android:layout_width="111dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="120dp"
+            android:layout_marginTop="285dp" />
 
-    <EditText
-        android:id="@+id/pet_desc"
-        android:layout_width="match_parent"
-        android:layout_height="76dp"
-        android:layout_marginTop="370dp"
-        android:hint="Description"
-        android:textAlignment="textStart" />
+        <EditText
+            android:id="@+id/pet_bday"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginTop="200dp"
+            android:hint="MM - DD - YYYY"
+            android:inputType="date" />
+
+        <EditText
+            android:id="@+id/pet_furcolor"
+            android:layout_width="160dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:hint="Fur Color"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/pet_eyecolor"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="170dp"
+            android:layout_marginTop="150dp"
+            android:hint="Eye Color"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/pet_proceedAdd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="410dp"
+            android:background="@drawable/button_layout"
+            android:fontFamily="@font/roboto"
+            android:text="Add Entry"
+            android:textColor="#ffff" />
+
+        <EditText
+            android:id="@+id/pet_desc"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="330dp"
+            android:hint="Description"
+            android:textAlignment="textStart" />
+    </RelativeLayout>
 
 </FrameLayout>
