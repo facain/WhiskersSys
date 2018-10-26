@@ -233,25 +233,25 @@
                 android:onClick="editProfile"/>
 
             <Button
-                android:id="@+id/petedit_adopt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Mark as Adopted"
-                android:layout_marginTop="30dp"
-                android:textColor="#ffff"
-                android:layout_margin="16dp"
-                android:background="@color/colorthemepink"
-                android:onClick="markAdopt"/>
-
-            <Button
                 android:id="@+id/petedit_remove"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:background="@color/colorthemepink"
                 android:onClick="removeProfile"
-                android:textColor="#ffff"
-                android:text="Remove Entry" />
+                android:text="Remove Entry"
+                android:textColor="#ffff" />
+
+            <Button
+                android:id="@+id/petedit_adopt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginTop="30dp"
+                android:background="@color/colorthemepink"
+                android:onClick="markAdopt"
+                android:text="Mark as Adopted"
+                android:textColor="#ffff" />
 
         </LinearLayout>
 

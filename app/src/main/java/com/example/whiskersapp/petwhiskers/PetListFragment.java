@@ -56,8 +56,7 @@ public class PetListFragment extends Fragment {
             protected void populateViewHolder(PetListViewHolder viewHolder, Pet model, final int position) {
                 if(model.getIsAdopt().equals("yes")){
                     viewHolder.setPetStatus("Adopted");
-                }
-                if(model.getVerStat().equals("0")){
+                }else if(model.getVerStat().equals("0")){
                     viewHolder.setPetStatus("Pending");
                 }else if(model.getVerStat().equals("1")){
                     viewHolder.setPetStatus("Available");

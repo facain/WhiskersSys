@@ -124,13 +124,27 @@ public class PetDetailsEdit extends AppCompatActivity {
                 birthdate.setText(pet.getBirthdate());
 
                 imgurl = pet.getImgUrl();
-                if(pet.getIsAdopt().equals("no")){
-                    adopt.setText("Mark as Adopted");
-                    status.setText("Available");
-                }else{
-                    adopt.setText("Unmark");
-                    status.setText("Adopted");
+                if (pet.getVerStat().equals("0")) {
+                    status.setText("Pending");
+                    adopt.setVisibility(View.INVISIBLE);
+
+                } else if (pet.getVerStat().equals("1")) {
+                    if (pet.getIsAdopt().equals("no")) {
+                        adopt.setText("Mark as Adopted");
+                        status.setText("Available");
+                    } else {
+                        adopt.setText("Unmark");
+                        status.setText("Adopted");
+                    }
+                } else if (pet.getVerStat().equals("2")) {
+                    status.setText("Rejected");
+                    adopt.setVisibility(View.INVISIBLE);
                 }
+
+
+
+
+
                 if (!imageText.equals("default_image")) {
                     Picasso.with(getBaseContext()).load(pet.getImgUrl()).networkPolicy(NetworkPolicy.OFFLINE)
                             .placeholder(R.drawable.default_image).into(petImage, new Callback() {
@@ -215,20 +229,25 @@ public class PetDetailsEdit extends AppCompatActivity {
                         }
 
                         if (pet != null) {
-                            if(pet.getIsAdopt().equals("no")) {
-                                pet.setIsAdopt("yes");
-                                table_pet_entry.child(pet.getId()).setValue(pet);
-                                Toast.makeText(getApplicationContext(), "Pet Marked as Adopted", Toast.LENGTH_SHORT).show();
-                                adopt.setText("Unmark");
-                            }else{
-                                pet.setIsAdopt("no");
-                                table_pet_entry.child(pet.getId()).setValue(pet);
-                                Toast.makeText(getApplicationContext(), "Unmarked", Toast.LENGTH_SHORT).show();
-                                adopt.setText("Mark as Adopted");
+
+                            if (pet.getVerStat().equals("0") || pet.getVerStat().equals("2")) {
+                            } else  {
+
+                                if (pet.getIsAdopt().equals("no")) {
+                                    pet.setIsAdopt("yes");
+                                    table_pet_entry.child(pet.getId()).setValue(pet);
+                                    Toast.makeText(getApplicationContext(), "Pet Marked as Adopted", Toast.LENGTH_SHORT).show();
+                                    adopt.setText("Unmark");
+                                } else {
+                                    pet.setIsAdopt("no");
+                                    table_pet_entry.child(pet.getId()).setValue(pet);
+                                    Toast.makeText(getApplicationContext(), "Unmarked", Toast.LENGTH_SHORT).show();
+                                    adopt.setText("Mark as Adopted");
+                                }
                             }
                         }
-                    }
 
+                    }
                     @Override
                     public void onCancelled(DatabaseError databaseError) {
 
