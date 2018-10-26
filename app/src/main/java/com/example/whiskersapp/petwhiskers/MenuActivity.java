@@ -255,6 +255,8 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
             fTrans.commit();
             petEntryFAB.show();
         }else if (id == R.id.nav_map) {
+            petEntryFAB.setVisibility(View.INVISIBLE);
+
             fragment = new MapFragment();
             fTrans = fManager.beginTransaction();
             fTrans.replace(R.id.contentFrame,fragment);

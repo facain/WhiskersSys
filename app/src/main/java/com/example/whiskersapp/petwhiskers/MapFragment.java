@@ -8,11 +8,14 @@ import android.location.Location;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -86,6 +89,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
     private CircleImageView petImg;
     private int ctr = 0;
     private List<LocationAddress> locationList;
+    private String category = "All";
 
 
 
@@ -103,6 +107,24 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
         super.onViewCreated(view, savedInstanceState);
         android.support.v7.widget.Toolbar toolbar = getActivity().findViewById(R.id.toolbar);
         toolbar.setTitle("Map");
+        FloatingActionButton PetEntryFab = getActivity().findViewById(R.id.cpefab);
+        PetEntryFab.hide();
+        BottomNavigationView bottomNavigationView = view.findViewById(R.id.map_bottomNav);
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId())
+                {
+                    case R.id.action_dog: category = "Dog"; break;
+                    case R.id.action_cat: category = "Cat"; break;
+                    case R.id.action_all: category = "All"; break;
+
+
+                }
+                getCurrentLocation();
+                return true;
+            }
+        });
         mAuth = FirebaseAuth.getInstance();
         firebaseDatabase = FirebaseDatabase.getInstance();
         locationList = new ArrayList<>();
@@ -123,16 +145,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
             public View getInfoWindow(Marker arg0) {
                 final LocationAddress userLoc  = markerUserHashMap.get(arg0);
                 // Getting view from the layout file info_window_layout
-                final int[] ctrPet = {0};
                 View v = getLayoutInflater().inflate(R.layout.custom_info_contents, null);
-                petImg = (CircleImageView)v.findViewById(R.id.user_img_info);
+                petImg = v.findViewById(R.id.user_img_info);
 
 
-                numOfEntries = (TextView)v.findViewById(R.id.num_of_entries);
+                numOfEntries = v.findViewById(R.id.num_of_entries);
 
 
 
-                    numOfEntries.setText(arg0.getSnippet());
+                numOfEntries.setText(arg0.getSnippet());
 
 
 
@@ -174,6 +195,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
                 Intent intent = new Intent(getActivity(), UserPetList.class);
                 intent.putExtra("id", userInfo.getOwner_id());
                 intent.putExtra("distance",marker.getTitle());
+                intent.putExtra("category",category);
                 startActivity(intent);
             }
         });
@@ -337,8 +359,16 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
                 Pet pet;
                 for(DataSnapshot children: dataSnapshot.getChildren()){
                     pet = children.getValue(Pet.class);
-                    if(pet.getOwner_id().equals(locationAdd.getOwner_id()) && pet.getIsAdopt().equals("no") && pet.getVerStat().equals("1") && pet.getCategory().equals("Dog")){
-                        ctr++;
+                    if((pet.getOwner_id().equals(locationAdd.getOwner_id()) && pet.getIsAdopt().equals("no") && pet.getVerStat().equals("1")) ){
+
+                        if(!category.equals("All")){
+                            if(pet.getCategory().equals(category)){
+                                ctr++;
+                            }
+                        }else{
+                            ctr++;
+                        }
+
                         Log.e("IDaddMrk",pet.getId());
                     }
                 }

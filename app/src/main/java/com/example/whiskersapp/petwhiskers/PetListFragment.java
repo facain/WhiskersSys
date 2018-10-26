@@ -42,8 +42,6 @@ public class PetListFragment extends Fragment {
     public void onViewCreated(final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         recyclerview = view.findViewById(R.id.PetListRV);
-        check = view.findViewById(R.id.pet_avail);
-        wrong = view.findViewById(R.id.pet_notAvail);
         recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
         firebaseDatabase = FirebaseDatabase.getInstance();
         table_pet_entry = firebaseDatabase.getReference("pet");
@@ -56,26 +54,15 @@ public class PetListFragment extends Fragment {
         ) {
             @Override
             protected void populateViewHolder(PetListViewHolder viewHolder, Pet model, final int position) {
-                if(model.getVerStat().equals("1")) {
-                    viewHolder.petCheck.setVisibility(View.VISIBLE);
-                    viewHolder.petWrong.setVisibility(View.INVISIBLE);
-                    viewHolder.petPend.setVisibility(View.INVISIBLE);
-                }else if(model.getVerStat().equals("2")){
-                    viewHolder.petCheck.setVisibility(View.INVISIBLE);
-                    viewHolder.petWrong.setVisibility(View.VISIBLE);
-                    viewHolder.petPend.setVisibility(View.INVISIBLE);
-
-
-                }else if(model.getVerStat().equals("0")) {
-                    viewHolder.petCheck.setVisibility(View.INVISIBLE);
-                    viewHolder.petWrong.setVisibility(View.INVISIBLE);
-                    viewHolder.petPend.setVisibility(View.VISIBLE);
-                }
-                if(model.getIsAdopt().equals("no")){
-                    viewHolder.setPetStatus("Available");
-
-                }else if(model.getIsAdopt().equals("yes")){
+                if(model.getIsAdopt().equals("yes")){
                     viewHolder.setPetStatus("Adopted");
+                }
+                if(model.getVerStat().equals("0")){
+                    viewHolder.setPetStatus("Pending");
+                }else if(model.getVerStat().equals("1")){
+                    viewHolder.setPetStatus("Available");
+                }else if(model.getVerStat().equals("2")){
+                    viewHolder.setPetStatus("Rejected");
                 }
                 viewHolder.setPetName(model.getPet_name());
                 viewHolder.setPetBreed(model.getBreed());

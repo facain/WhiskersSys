@@ -1,14 +1,12 @@
 package com.example.whiskersapp.petwhiskers.ViewHolder;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.whiskersapp.petwhiskers.PetListFragment;
 import com.example.whiskersapp.petwhiskers.R;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
@@ -17,15 +15,11 @@ import com.squareup.picasso.Picasso;
 
 public class PetListViewHolder extends RecyclerView.ViewHolder{
     public static TextView petBreed, petStatus, petGender,petName;
-    public static ImageView petImage,petCheck,petWrong,petPend;
-    String currency = "₱";
+    public static ImageView petImage;
     public static CardView cardView;
 
     public PetListViewHolder(View itemView) {
         super(itemView);
-        petCheck = (ImageView)itemView.findViewById(R.id.pet_avail);
-        petWrong = (ImageView)itemView.findViewById(R.id.pet_notAvail);
-        petPend = (ImageView)itemView.findViewById(R.id.pet_pending);
         petImage = (ImageView)itemView.findViewById(R.id.pet_image);
         petName = (TextView)itemView.findViewById(R.id.pet_name);
         petBreed = (TextView)itemView.findViewById(R.id.pet_breed);

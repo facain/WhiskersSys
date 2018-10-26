@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_all"
+        android:enabled="true"
+        android:title="All"
+        android:icon="@drawable/icon_all_map"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/action_dog"
+        android:enabled="true"
+        android:title="Dog"
+        android:icon="@drawable/icon_dog_map"
+        app:showAsAction="ifRoom"
+        />
+    <item
+        android:id="@+id/action_cat"
+        android:enabled="true"
+        android:title="Cat"
+        android:icon="@drawable/icon_cat_map"
+        app:showAsAction="ifRoom"
+        />
+
+</menu>

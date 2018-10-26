@@ -67,8 +67,6 @@ public class PetDetails extends AppCompatActivity {
         birthdate = findViewById(R.id.petdetails_birthdate);
         gender = findViewById(R.id.petdetails_gender);
         status = findViewById(R.id.petdetails_status);
-        check = findViewById(R.id.pet_avail);
-        wrong = findViewById(R.id.pet_notAvail);
 
         collapsingToolbarLayout = (CollapsingToolbarLayout)findViewById(R.id.collapsing_pet);
         collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);

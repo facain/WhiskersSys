@@ -336,7 +336,7 @@ public class AddPetPhotoFragment extends Fragment {
                             pet.setImgUrl(taskSnapshot.getDownloadUrl().toString());
                             pet.setIsAdopt("no");
                             pet.setOwner_id(mAuth.getCurrentUser().getUid());
-                            pet.setStatus("available");
+                            pet.setStatus("Available");
                             progressDialog.cancel();
 
                             mDatabaseRef.child(id).setValue(pet);

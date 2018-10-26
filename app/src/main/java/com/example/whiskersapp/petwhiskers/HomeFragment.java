@@ -1,38 +1,25 @@
 package com.example.whiskersapp.petwhiskers;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.support.v4.view.ViewPager;
+import android.text.Html;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v7.widget.CardView;
-import android.widget.Button;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.example.whiskersapp.petwhiskers.Model.Pet;
 import com.example.whiskersapp.petwhiskers.ViewHolder.PetHomeViewHolder;
-import com.example.whiskersapp.petwhiskers.ViewHolder.PetListViewHolder;
-import com.example.whiskersapp.petwhiskers.ViewHolder.PetViewHolder;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,16 +29,15 @@ public class HomeFragment extends Fragment {
     private Pet pet;
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference dbPet;
-    private int ctr;
+    private int count;
 
     private PetHomeViewHolder homeAdapter;
-    private ImageView imgPet;
-    private TextView petname, petbreed, petstatus;
-    private CardView cardView;
-    private Button messageBtn;
+    private TextView[] dots;
     private FirebaseAuth mAuth;
     private List<Pet> petList;
-    private RecyclerView recyclerview;
+    private ViewPager viewPager;
+    private LinearLayout dotsLayout;
+
 
 
 
@@ -72,9 +58,8 @@ public class HomeFragment extends Fragment {
         dbPet = firebaseDatabase.getReference("pet");
         mAuth = FirebaseAuth.getInstance();
 
-        recyclerview = view.findViewById(R.id.homeRV);
-        LinearLayoutManager linear = new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false);
-        recyclerview.setLayoutManager(linear);
+        viewPager = view.findViewById(R.id.homeVP);
+        dotsLayout =  view.findViewById(R.id.home_dots);
         petList = new ArrayList<>();
         dbPet.addValueEventListener(new ValueEventListener() {
             @Override
@@ -93,20 +78,48 @@ public class HomeFragment extends Fragment {
                     }
 
                 }
-
-                LinearLayoutManager llm = new LinearLayoutManager(getContext());
-                llm.setOrientation(LinearLayoutManager.HORIZONTAL);
-                recyclerview.setLayoutManager(llm);
-
+                count = ctr;
+                addDotsIndicator(0,count);
                 homeAdapter = new PetHomeViewHolder(getContext(), petList);
-                recyclerview.setAdapter(homeAdapter);
+                viewPager.setAdapter(homeAdapter);
+                viewPager.addOnPageChangeListener(viewListener);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-             }
+            }
         });
 
 
     }
+    private void addDotsIndicator(int position, int size){
+        dots = new TextView[size];
+        dotsLayout.removeAllViews();
+        for(int x = 0; x < dots.length; x++){
+            dots[x] = new TextView(getActivity());
+            dots[x].setText(Html.fromHtml("&#8226;"));
+            dots[x].setTextSize(35);
+            dots[x].setTextColor(Color.parseColor("#cccccc"));
+            dotsLayout.addView(dots[x]);
+        }
+        if(dots.length > 0){
+            dots[position].setTextColor(Color.parseColor("#ffffff"));
+        }
+    }
+    ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
+        @Override
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+        }
+
+        @Override
+        public void onPageSelected(int position) {
+            addDotsIndicator(position,count);
+        }
+
+        @Override
+        public void onPageScrollStateChanged(int state) {
+
+        }
+    };
 }

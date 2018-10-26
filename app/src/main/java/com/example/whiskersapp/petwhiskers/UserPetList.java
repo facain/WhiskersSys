@@ -33,6 +33,7 @@ public class UserPetList extends AppCompatActivity {
     private FirebaseAuth mAuth;
     String id = "";
     String distance = "";
+    String category = "";
     Toolbar toolbar;
     TextView petOwnerName;
     TextView kmDistance;
@@ -45,8 +46,9 @@ public class UserPetList extends AppCompatActivity {
         if(getIntent()!=null){
             id = getIntent().getStringExtra("id");
             distance = getIntent().getStringExtra("distance");
-            if(!id.isEmpty()&&!distance.isEmpty()){
-                toolbar = (Toolbar) findViewById(R.id.toolbar_user_pet);
+            category = getIntent().getStringExtra("category");
+            if(!id.isEmpty()&&!distance.isEmpty()&&!category.isEmpty()){
+                toolbar = findViewById(R.id.toolbar_user_pet);
                 toolbar.setNavigationIcon(R.drawable.ic_back_24dp);
                 setSupportActionBar(toolbar);
                 getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -104,7 +106,7 @@ public class UserPetList extends AppCompatActivity {
                 ) {
                     @Override
                     protected void populateViewHolder(PetListViewHolder viewHolder, Pet model, final int position) {
-                        if(model.getIsAdopt().equals("no") && model.getVerStat().equals("1") && model.getCategory().equals("Dog")){
+                        if(model.getIsAdopt().equals("no") && model.getVerStat().equals("1") && (model.getCategory().equals(category)||category.equals("All"))){
                             viewHolder.setPetName(model.getPet_name());
                             viewHolder.setPetBreed(model.getBreed());
                             viewHolder.setPetGender(model.getGender());

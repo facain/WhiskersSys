@@ -78,7 +78,7 @@ public class PetEntryFragment extends Fragment{
         petGenItem.add("Female");
 
         petTransItem.add("Free");
-        petTransItem.add("Sale");
+        petTransItem.add("For Sale");
 
         ArrayAdapter<String> dataAdapterGen = new ArrayAdapter<String>(
                 getActivity(), android.R.layout.simple_spinner_dropdown_item, petGenItem

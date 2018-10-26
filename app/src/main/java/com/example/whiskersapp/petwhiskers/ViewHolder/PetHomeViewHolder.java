@@ -2,13 +2,15 @@ package com.example.whiskersapp.petwhiskers.ViewHolder;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
+import android.support.v4.view.PagerAdapter;
 import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.example.whiskersapp.petwhiskers.ChatActivity;
@@ -22,10 +24,11 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class PetHomeViewHolder extends RecyclerView.Adapter<PetHomeViewHolder.HomeViewHolder>{
+public class PetHomeViewHolder extends PagerAdapter {
 
     private Context context;
     private List<Pet> petList;
+    private LayoutInflater layoutInflater;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     public PetHomeViewHolder(Context context, List<Pet> petList){
@@ -33,35 +36,52 @@ public class PetHomeViewHolder extends RecyclerView.Adapter<PetHomeViewHolder.Ho
         this.petList = petList;
     }
 
-    @Override
-    public HomeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view;
-        LayoutInflater inflater = LayoutInflater.from(context);
-        view = inflater.inflate(R.layout.home_cardview,parent,false);
 
-        return new HomeViewHolder(view);
+    @Override
+    public int getCount() {
+        return petList.size();
     }
 
     @Override
-    public void onBindViewHolder(final HomeViewHolder holder, final int position) {
-        holder.petName.setText(petList.get(position).getPet_name());
-        holder.petBreed.setText(petList.get(position).getBreed());
-        holder.petTrans.setText(petList.get(position).getTransaction());
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+        return view == (CardView)object;
+    }
+
+    @NonNull
+    @Override
+    public Object instantiateItem(@NonNull ViewGroup container, final int position) {
+        TextView petName, petBreed, petTrans;
+        final ImageView imageView;
+        CardView homeCardView;
+        Button msgBtn;
+        layoutInflater = (LayoutInflater)context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+        View view = layoutInflater.inflate(R.layout.home_cardview,container,false);
+
+        petName = view.findViewById(R.id.pet_featurename);
+        petBreed = view.findViewById(R.id.pet_featurebreed);
+        petTrans = view.findViewById(R.id.pet_featuretrans);
+        imageView = view.findViewById(R.id.pet_featureimg);
+        msgBtn = view.findViewById(R.id.pet_featuremsg);
+        homeCardView = view.findViewById(R.id.cardview_feature);
+
+        petName.setText(petList.get(position).getPet_name());
+        petBreed.setText(petList.get(position).getBreed());
+        petTrans.setText(petList.get(position).getTransaction());
         final String img = petList.get(position).getImgUrl();
         if (!img.equals("default_image")) {
             Picasso.with(context).load(img).networkPolicy(NetworkPolicy.OFFLINE)
-                    .placeholder(R.drawable.default_image).into(holder.imageView, new Callback() {
+                    .placeholder(R.drawable.default_image).into(imageView, new Callback() {
                 @Override
                 public void onSuccess() {
                 }
 
                 @Override
                 public void onError() {
-                    Picasso.with(context).load(img).placeholder(R.drawable.default_image).into(holder.imageView);
+                    Picasso.with(context).load(img).placeholder(R.drawable.default_image).into(imageView);
                 }
             });
         }
-        holder.homeCardView.setOnClickListener(new View.OnClickListener() {
+        homeCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, PetDetails.class);
@@ -70,7 +90,7 @@ public class PetHomeViewHolder extends RecyclerView.Adapter<PetHomeViewHolder.Ho
                 context.startActivity(intent);
             }
         });
-        holder.msgBtn.setOnClickListener(new View.OnClickListener() {
+        msgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ChatActivity.class);
@@ -80,31 +100,13 @@ public class PetHomeViewHolder extends RecyclerView.Adapter<PetHomeViewHolder.Ho
             }
         });
 
+        container.addView(view);
+
+        return view;
     }
 
     @Override
-    public int getItemCount() {
-        return petList.size();
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        container.removeView((CardView)object);
     }
-
-    public static class HomeViewHolder extends RecyclerView.ViewHolder{
-        TextView petName, petBreed, petTrans;
-        ImageView imageView;
-        CardView homeCardView;
-        Button msgBtn;
-        public HomeViewHolder(View itemView){
-            super(itemView);
-            petName = itemView.findViewById(R.id.pet_featurename);
-            petBreed = itemView.findViewById(R.id.pet_featurebreed);
-            petTrans = itemView.findViewById(R.id.pet_featuretrans);
-            imageView = itemView.findViewById(R.id.pet_featureimg);
-            msgBtn = itemView.findViewById(R.id.pet_featuremsg);
-            homeCardView = itemView.findViewById(R.id.cardview_feature);
-
-
-        }
-    }
-
-
-
 }
