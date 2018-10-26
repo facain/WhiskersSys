@@ -74,7 +74,7 @@ public class PetListFragment extends Fragment {
                 if(model.getIsAdopt().equals("no")){
                     viewHolder.setPetStatus("Available");
 
-                }else{
+                }else if(model.getIsAdopt().equals("yes")){
                     viewHolder.setPetStatus("Adopted");
                 }
                 viewHolder.setPetName(model.getPet_name());

@@ -337,7 +337,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
                 Pet pet;
                 for(DataSnapshot children: dataSnapshot.getChildren()){
                     pet = children.getValue(Pet.class);
-                    if(pet.getOwner_id().equals(locationAdd.getOwner_id()) && pet.getIsAdopt().equals("no") && pet.getVerStat().equals("1")){
+                    if(pet.getOwner_id().equals(locationAdd.getOwner_id()) && pet.getIsAdopt().equals("no") && pet.getVerStat().equals("1") && pet.getCategory().equals("Dog")){
                         ctr++;
                         Log.e("IDaddMrk",pet.getId());
                     }

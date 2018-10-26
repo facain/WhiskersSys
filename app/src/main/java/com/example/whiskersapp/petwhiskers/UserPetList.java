@@ -104,7 +104,7 @@ public class UserPetList extends AppCompatActivity {
                 ) {
                     @Override
                     protected void populateViewHolder(PetListViewHolder viewHolder, Pet model, final int position) {
-                        if(model.getIsAdopt().equals("no") && model.getVerStat().equals("1")){
+                        if(model.getIsAdopt().equals("no") && model.getVerStat().equals("1") && model.getCategory().equals("Dog")){
                             viewHolder.setPetName(model.getPet_name());
                             viewHolder.setPetBreed(model.getBreed());
                             viewHolder.setPetGender(model.getGender());

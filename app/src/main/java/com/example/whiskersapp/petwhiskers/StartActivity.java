@@ -70,6 +70,7 @@ public class StartActivity extends AppCompatActivity {
     private FirebaseDatabase mDatabase;
     private DatabaseReference dbRef;
     private LoginButton loginButton;
+    private SignInButton signInButton;
     private PrefUtil prefUtil;
     private GoogleSignInClient mGoogleSignInClient;
     private static final int RC_SIGN_IN = 9001;
@@ -116,7 +117,6 @@ public class StartActivity extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance();
         dbRef = mDatabase.getReference("user_account");
         Log.e("TAG", "handleFacebookAccessToken:" );
-
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
 
             @Override
@@ -139,7 +139,7 @@ public class StartActivity extends AppCompatActivity {
             }
         });
 
-        SignInButton signInButton = findViewById(R.id.sign_in_button);
+        signInButton = findViewById(R.id.sign_in_button);
         signInButton.setSize(SignInButton.SIZE_STANDARD);
 
 
@@ -160,7 +160,13 @@ public class StartActivity extends AppCompatActivity {
 
 
     }
+    public void onclickFb(View view){
+        loginButton.performClick();
+    }
 
+    public void onclickGoogle(View view){
+        signIn();
+    }
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
