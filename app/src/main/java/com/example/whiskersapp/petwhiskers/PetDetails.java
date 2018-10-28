@@ -226,4 +226,11 @@ public class PetDetails extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void viewOwnerProfile(View view){
+        String pet_owner_id = getIntent().getStringExtra("owner_id");
+        Intent intent = new Intent(PetDetails.this, ViewProfile.class);
+        intent.putExtra("id", pet_owner_id);
+        startActivity(intent);
+    }
+
 }

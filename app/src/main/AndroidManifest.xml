@@ -89,7 +89,8 @@
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-        <activity android:name=".EditPetPhoto"></activity>
+        <activity android:name=".EditPetPhoto" />
+        <activity android:name=".ViewProfile"></activity>
     </application>
 
 </manifest>
