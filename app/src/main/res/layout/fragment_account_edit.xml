@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/view_profile_background"
     tools:context=".EditAccountFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -19,12 +20,15 @@
             android:layout_marginTop="78dp"
             android:text="Edit Profile"
             android:textStyle="bold"
+            android:textColor="#fff"
             android:textAlignment="center"
             android:textSize="24sp" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColorHint="#fff"
+            android:backgroundTint="#fff"
             android:hint="First Name"
             android:layout_marginTop="130dp"
             android:inputType="textPersonName"
@@ -34,6 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Last Name"
+            android:textColorHint="#fff"
+            android:backgroundTint="#fff"
             android:layout_marginTop="180dp"
             android:inputType="textPersonName"
             android:id="@+id/edit_lname"/>
@@ -44,6 +50,8 @@
             android:hint="Contact Number"
             android:layout_marginTop="230dp"
             android:inputType="textPhonetic"
+            android:textColorHint="#fff"
+            android:backgroundTint="#fff"
             android:id="@+id/edit_contact"/>
 
         <EditText
@@ -51,6 +59,8 @@
             android:layout_height="wrap_content"
             android:hint="Email"
             android:layout_marginTop="280dp"
+            android:textColorHint="#fff"
+            android:backgroundTint="#fff"
             android:inputType="textEmailAddress"
             android:id="@+id/edit_email"/>
 
@@ -59,6 +69,8 @@
             android:layout_height="wrap_content"
             android:hint="Password"
             android:layout_marginTop="330dp"
+            android:textColorHint="#fff"
+            android:backgroundTint="#fff"
             android:inputType="textPassword"
             android:id="@+id/edit_password"/>
 
@@ -68,7 +80,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="60dp"
-            android:background="#3395BF"
+            android:background="@drawable/background_borders"
             android:textColor="#ffff"
             android:text="Edit Profile"
             android:textSize="18sp"

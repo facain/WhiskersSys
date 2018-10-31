@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/view_profile_background"
     tools:context=".AccountDisplayFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -49,6 +50,7 @@
             android:drawableLeft="@drawable/person_blk"
             android:drawablePadding="20dp"
             android:text="John"
+            android:textColor="#ffff"
             android:textSize="16sp" />
 
         <TextView
@@ -59,6 +61,7 @@
             android:layout_centerHorizontal="true"
             android:drawableLeft="@drawable/person_blk"
             android:drawablePadding="20dp"
+            android:textColor="#ffff"
             android:text="Doe"
             android:textSize="16sp" />
 
@@ -70,6 +73,7 @@
             android:layout_centerHorizontal="true"
             android:drawableLeft="@drawable/mail_blk"
             android:drawablePadding="20dp"
+            android:textColor="#ffff"
             android:text="johndoe@gmail.com"
             android:textSize="16sp" />
 
@@ -80,6 +84,7 @@
             android:layout_below="@+id/acctdisplay_lname"
             android:layout_centerHorizontal="true"
             android:drawableLeft="@drawable/phone_blk"
+            android:textColor="#ffff"
             android:drawablePadding="20dp"
             android:text="09222-1111"
             android:textSize="16sp" />
@@ -92,7 +97,8 @@
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="145dp"
             android:textColor="#ffff"
-            android:background="#3395BF"
+
+            android:background="@drawable/background_borders"
             android:textSize="14dp"
 
             android:text="Edit Profile" />
@@ -104,7 +110,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="88dp"
-            android:background="#3395BF"
+            android:background="@drawable/background_borders"
             android:textColor="#ffff"
             android:textSize="14dp"
             android:text="Update Address Location" />

@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/view_profile_background"
     tools:context=".AddPetPhotoFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -28,7 +29,7 @@
             android:layout_above="@+id/pet_image_preview"
             android:layout_alignParentStart="true"
             android:layout_marginStart="33dp"
-            android:background="#3395BF"
+            android:background="@drawable/background_borders"
             android:textColor="#fff"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
@@ -41,7 +42,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignTop="@+id/pet_btnupload"
             android:layout_marginEnd="30dp"
-            android:background="#3395BF"
+            android:background="@drawable/background_borders"
             android:paddingLeft="16dp"
             android:paddingRight="16dp"
             android:text="CAMERA"
@@ -54,7 +55,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="53dp"
-            android:background="#3395BF"
+            android:background="@drawable/background_borders"
             android:textColor="#ffff"
             android:text="Add Pet Photo" />
 

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/bgs"
+    android:background="@drawable/view_profile_background"
     tools:context=".MessageFragment">
 
     <android.support.v7.widget.RecyclerView

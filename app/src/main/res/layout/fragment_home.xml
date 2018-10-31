@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/bgs"
+    android:background="@drawable/view_profile_background"
     tools:context=".HomeFragment">
 
     <TextView
@@ -13,6 +13,7 @@
         android:layout_marginTop="?attr/actionBarSize"
         android:padding="20dp"
         android:text="Featured Pet(s)"
+        android:textColor="#fff"
         android:textAlignment="center"
         android:textSize="24sp"
         android:textStyle="bold"/>

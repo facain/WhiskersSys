@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="11dp"
+    android:background="@drawable/view_profile_background"
     tools:context=".PetEntryFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -12,7 +13,8 @@
         android:layout_height="470dp"
         android:layout_marginTop="60dp"
 
-        android:background="@drawable/layout_border">
+        android:background="@drawable/background_borders"
+        >
 
         <TextView
 
@@ -21,7 +23,8 @@
             android:layout_marginTop="10dp"
             android:text="Add Pet Entry"
             android:textAlignment="center"
-            android:textColor="#000"
+            android:textColor="#fff"
+            android:textStyle="bold"
             android:textSize="20sp" />
 
         <EditText
@@ -31,6 +34,8 @@
             android:layout_marginTop="60dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:textColorHint="#fff"
+            android:backgroundTint="#fff"
             android:hint="Pet Name"
             android:inputType="textPersonName" />
 
@@ -40,6 +45,8 @@
             android:layout_marginLeft="10dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="105dp"
+            android:textColorHint="#fff"
+            android:backgroundTint="#fff"
             android:hint="Breed"
             android:inputType="text" />
 
@@ -48,8 +55,10 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="210dp"
             android:layout_marginLeft="15dp"
+            android:textColorHint="#fff"
+            android:backgroundTint="#fff"
             android:text="Birthdate"
-            android:textColor="#000"
+            android:textColor="#fff"
             android:textSize="20sp" />
 
         <TextView
@@ -58,13 +67,15 @@
             android:layout_marginLeft="165dp"
             android:layout_marginTop="115dp"
             android:text="Gender"
-            android:textColor="#000"
+            android:textColor="#fff"
+            android:backgroundTint="#fff"
             android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/pet_gender"
             android:layout_width="111dp"
             android:layout_height="36dp"
+            android:backgroundTint="#fff"
             android:layout_marginLeft="240dp"
             android:layout_marginTop="110dp" />
 
@@ -74,12 +85,13 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="250dp"
             android:text="Category"
-            android:textColor="#000"
+            android:textColor="#fff"
             android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/pet_category"
             android:layout_width="111dp"
+            android:backgroundTint="#fff"
             android:layout_height="36dp"
             android:layout_marginLeft="100dp"
             android:layout_marginTop="245dp" />
@@ -90,12 +102,13 @@
             android:layout_marginLeft="15dp"
             android:layout_marginTop="290dp"
             android:text="Transaction"
-            android:textColor="#000"
+            android:textColor="#fff"
             android:textSize="20sp" />
 
         <Spinner
             android:id="@+id/pet_trans"
             android:layout_width="111dp"
+            android:backgroundTint="#fff"
             android:layout_height="36dp"
             android:layout_marginLeft="120dp"
             android:layout_marginTop="285dp" />
@@ -107,6 +120,8 @@
             android:layout_marginLeft="100dp"
             android:layout_marginTop="200dp"
             android:hint="MM - DD - YYYY"
+            android:textColorHint="#fff"
+            android:backgroundTint="#fff"
             android:inputType="date" />
 
         <EditText
@@ -114,6 +129,8 @@
             android:layout_width="160dp"
             android:layout_marginLeft="10dp"
             android:layout_height="wrap_content"
+            android:textColorHint="#fff"
+            android:backgroundTint="#fff"
             android:layout_marginTop="150dp"
             android:hint="Fur Color"
             android:inputType="text" />
@@ -124,6 +141,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="170dp"
             android:layout_marginTop="150dp"
+            android:textColorHint="#fff"
+            android:backgroundTint="#fff"
+
             android:hint="Eye Color"
             android:inputType="text" />
 
@@ -134,7 +154,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="410dp"
-            android:background="@drawable/button_layout"
+            android:background="@drawable/background_borders"
             android:fontFamily="@font/roboto"
             android:text="Add Entry"
             android:textColor="#ffff" />
@@ -147,6 +167,8 @@
             android:layout_marginRight="10dp"
             android:layout_marginTop="330dp"
             android:hint="Description"
+            android:textColorHint="#fff"
+            android:backgroundTint="#fff"
             android:textAlignment="textStart" />
     </RelativeLayout>
 

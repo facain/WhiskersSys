@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".MenuActivity"
-    android:background="@drawable/bgs"
+    android:background="@drawable/view_profile_background"
     tools:showIn="@layout/app_bar_main_menu">
 
     <FrameLayout
