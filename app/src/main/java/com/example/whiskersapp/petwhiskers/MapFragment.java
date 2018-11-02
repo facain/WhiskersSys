@@ -230,16 +230,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
 
                     // requests here.
                 } catch (ApiException exception) {
-                    Log.e("Exception", "Test2");
                     switch (exception.getStatusCode()) {
                         case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
                             try {
                                 ResolvableApiException resolvable = (ResolvableApiException) exception;
-
-                                Log.e("check error","Test1");
-                                if(getActivity() == null){
-                                    Log.e("Get Activity", "yes null");
-                                }
 
                                 resolvable.startResolutionForResult(
                                         getActivity(),
@@ -329,11 +323,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
                         Location userLocation = new Location("userLocation");
                         userLocation.setLatitude(userLatLng.latitude);
                         userLocation.setLongitude(userLatLng.longitude);
-                        Log.e("IdgetNear",test.getId());
                         float distance = currentLocation.distanceTo(userLocation)/1000;
-
                         if(distance <= distanceKM){
-                            Log.e("IdgetDistance",test.getId());
                             addMarkerToMap(test, distance);
                         }
                     }
@@ -368,8 +359,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
                         }else{
                             ctr++;
                         }
-
-                        Log.e("IDaddMrk",pet.getId());
                     }
                 }
                 if(ctr > 0){
@@ -402,8 +391,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // final LocationSettingsStates states = LocationSettingsStates.fromIntent(data);
-        Log.e("Activity", "Test");
-        Log.d("Activity","Test1");
         super.onActivityResult(requestCode, resultCode,data);
 
         switch (requestCode) {
@@ -419,7 +406,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback{
                         break;
                     case RESULT_CANCELED:
                         // The user was asked to change settings, but chose not to
-                        Log.d("Activity","Cancel");
 
                         Toast.makeText(getContext(), "Permission Denied!", Toast.LENGTH_SHORT).show();
                         break;

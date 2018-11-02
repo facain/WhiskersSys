@@ -96,7 +96,7 @@ public class HomeFragment extends Fragment {
         dots = new TextView[size];
         dotsLayout.removeAllViews();
         for(int x = 0; x < dots.length; x++){
-            dots[x] = new TextView(getActivity());
+            dots[x] = new TextView(getContext());
             dots[x].setText(Html.fromHtml("&#8226;"));
             dots[x].setTextSize(35);
             dots[x].setTextColor(Color.parseColor("#cccccc"));

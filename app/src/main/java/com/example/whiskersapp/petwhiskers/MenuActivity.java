@@ -232,7 +232,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        ProgressDialog progressDialog = new ProgressDialog(MenuActivity.this);
+        final ProgressDialog progressDialog = new ProgressDialog(MenuActivity.this);
         android.support.v7.widget.Toolbar toolbar = findViewById(R.id.toolbar);
         FragmentManager fManager = getSupportFragmentManager();
         FragmentTransaction fTrans;
@@ -300,6 +300,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
                 mGoogleSignInClient.signOut()
                         .addOnCompleteListener(this, new OnCompleteListener<Void>() {
                             public void onComplete(@NonNull Task<Void> task) {
+                                progressDialog.dismiss();
                                 Toast.makeText(getApplicationContext(), "Successfully logged out", Toast.LENGTH_SHORT).show();
                             }
                         });
@@ -325,7 +326,7 @@ public class MenuActivity extends AppCompatActivity implements NavigationView.On
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         Log.e("check activity","Test1");
-        if ((requestCode == AddLocationFragment.REQUEST_CHECK_SETTINGS) || (requestCode == MapFragment.REQUEST_CHECK_SETTINGS)){
+        if ((requestCode == MapFragment.REQUEST_CHECK_SETTINGS)){
             Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.contentFrame);
             fragment.onActivityResult(requestCode, resultCode, data);
         }

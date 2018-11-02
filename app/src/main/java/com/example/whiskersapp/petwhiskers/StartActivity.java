@@ -5,14 +5,12 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
 import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.content.Intent;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.whiskersapp.petwhiskers.Model.User;
@@ -20,8 +18,6 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.LoggingBehavior;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -39,7 +35,6 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
-import com.facebook.login.widget.LoginButton;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DataSnapshot;
@@ -48,17 +43,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import org.json.JSONObject;
-
-import java.lang.reflect.Array;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.Arrays;
-
-import static android.provider.ContactsContract.Intents.Insert.EMAIL;
-
 
 
 public class StartActivity extends AppCompatActivity {
@@ -108,6 +94,7 @@ public class StartActivity extends AppCompatActivity {
         }
         if (firebaseAuth.getCurrentUser() != null) {
             startActivity(new Intent(this, MenuActivity.class));
+            finish();
         }
 
         callbackManager = CallbackManager.Factory.create();
@@ -197,15 +184,6 @@ public class StartActivity extends AppCompatActivity {
         }
     }
 
-    public void signupView(View view){
-        Intent intent = new Intent(StartActivity.this, SignUpActivity.class);
-        startActivity(intent);
-    }
-
-    public void loginView(View view){
-        Intent intent = new Intent(StartActivity.this, LoginActivity.class);
-        startActivity(intent);
-    }
 
 
     @Override

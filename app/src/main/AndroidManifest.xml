@@ -31,18 +31,6 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity
-            android:name=".SignUpActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".SignUpConActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".MainActivity"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".LoginActivity"
-            android:screenOrientation="portrait" />
-        <activity
             android:name=".MenuActivity"
             android:screenOrientation="portrait" />
         <activity
@@ -53,9 +41,6 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".EditPetEntry"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".MapsActivity"
             android:screenOrientation="portrait" />
 
         <meta-data
