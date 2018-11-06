@@ -150,10 +150,13 @@ public class UserPetList extends AppCompatActivity {
             }
         });
     }
-    @Override
-    public boolean onSupportNavigateUp() {
-        onBackPressed();
-        return true;
-    }
+   public void viewOwnerProfile(View view){
+       Intent intent = new Intent(getApplicationContext(), ViewProfile.class);
+       String ownerId = getIntent().getStringExtra("id");
+       if(!ownerId.isEmpty()){
+           intent.putExtra("id", ownerId);
+           startActivity(intent);
+       }
+   }
 
 }

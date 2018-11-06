@@ -64,8 +64,9 @@ public class ProfilePetViewHolder extends RecyclerView.Adapter<ProfilePetViewHol
                 Intent intent = new Intent(context, PetDetails.class);
                 intent.putExtra("id",petList.get(position).getId());
                 intent.putExtra("owner_id",petList.get(position).getOwner_id());
-                context.startActivity(intent);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+                context.startActivity(intent);
 
             }
         });
