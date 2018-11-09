@@ -88,6 +88,7 @@ public class EditPetPhoto extends AppCompatActivity {
 
         toolbar.setNavigationIcon(R.drawable.ic_back_24dp);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
         pet = new Pet();
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

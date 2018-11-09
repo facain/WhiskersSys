@@ -68,7 +68,6 @@
             android:id="@+id/petedit_image_preview"
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="@drawable/person_blk"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="133dp"
